@@ -17,17 +17,7 @@ public class Main {
             }
         }
         Collections.sort(choices);
-        ArrayList<HandPick> refined = new ArrayList<>();
-        double denom = choices.get(0).getWorth();
-        for(HandPick k : choices){
-            double diffr = choices.get(0).getWorth() - k.getWorth();
-            double result = diffr/denom;
-            if(result > 0.15) break;
-            refined.add(k);
-        }
-        BonusCompare bc = new BonusCompare();
-        Collections.sort(refined,bc);
-        return refined.get(0);
+        return choices.get(0);
     }
 
     public static void main(String[] args) throws Exception{

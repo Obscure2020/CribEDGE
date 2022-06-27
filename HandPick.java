@@ -89,9 +89,15 @@ public class HandPick implements Comparable<HandPick>{
     }
 
     public int compareTo(HandPick other){
-        Integer mine = worth;
-        Integer theirs = other.worth;
-        return theirs.compareTo(mine);
+        Integer mine = worth + bonusPoints;
+        Integer theirs = other.worth + other.bonusPoints;
+        int result = theirs.compareTo(mine);
+        if(result == 0){
+            mine = worth;
+            theirs = other.worth;
+            return theirs.compareTo(mine);
+        }
+        return result;
     }
 
     public int getWorth(){
