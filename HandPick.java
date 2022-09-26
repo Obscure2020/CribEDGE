@@ -17,7 +17,7 @@ public class HandPick implements Comparable<HandPick>{
                 kept.add(cards.get(i));
             }
         }
-        worth = CribbageDeck.card4Worth(kept);
+        worth = CribbageDeck.hand4Worth(kept);
         bonusPoints = calculateBonus(dealer);
     }
 

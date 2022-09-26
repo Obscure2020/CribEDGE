@@ -20,7 +20,7 @@ public class CribbageDeck {
         throw new IllegalArgumentException("Invalid card abbreviation. \"" + input + "\" not found in deck.");
     }
 
-    public static int card4Worth(ArrayList<PlayingCard> cards){
+    public static int hand4Worth(ArrayList<PlayingCard> cards){
         int points = 0;
         boolean run4 = false;
 
