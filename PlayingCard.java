@@ -1,4 +1,4 @@
-public class PlayingCard{
+public class PlayingCard implements Comparable<PlayingCard>{
 
     private int face;
     private int suit;
@@ -34,6 +34,18 @@ public class PlayingCard{
 
     public int points(){
         return Integer.min(face+1, 10);
+    }
+
+    public int compareTo(PlayingCard other){
+        Integer mine = face;
+        Integer theirs = other.face;
+        int result = mine.compareTo(theirs);
+        if(result == 0){
+            mine = suit;
+            theirs = other.suit;
+            return mine.compareTo(theirs);
+        }
+        return result;
     }
 
 }

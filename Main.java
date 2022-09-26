@@ -42,6 +42,14 @@ public class Main {
 
         HandPick choice = pickHand(hand, dealer);
         System.out.println(choice.fancyString());
+        System.out.println();
+
+        System.out.print("What was the turn card? - ");
+        PlayingCard turnCard = deck.getCard(scan.nextLine());
+        System.out.println("Turn card was the " + turnCard.getLongName());
+        System.out.println();
+
+        int fullHandWorth = choice.fullWorth(turnCard);
 
         scan.close();
     }

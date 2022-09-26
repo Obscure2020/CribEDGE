@@ -13,7 +13,7 @@ Challenge: build a Cribbage-playing bot good enough to beat my grandma.
 
 ## Roadmap
 **Pre-alpha**
-- [ ] Add hand worth recalculation with turn card
+- [x] Add hand worth recalculation with turn card
 - [ ] Add crib worth calculation (with turn card, of course)
 - [ ] Add opponent hand worth calculation (with turn card)
 - [ ] Add opponent crib worth calculation (with turn card)
