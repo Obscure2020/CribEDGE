@@ -83,6 +83,9 @@ public class HandPick implements Comparable<HandPick>{
             if(tossedSum == 15) points -= 5;
             if(tossedFive) points -= 2;
             if(tossedPair) points -= 5;
+            //Thanks to u/james-500 for suggesting this next line.
+            //I hadn't thought of avoiding opponent-crib flushes.
+            if(tossed.get(0).getSuit() != tossed.get(1).getSuit()) points++;
         }
 
         return points;
