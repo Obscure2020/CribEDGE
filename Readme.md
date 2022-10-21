@@ -7,10 +7,6 @@ Challenge: build a Cribbage-playing bot good enough to beat my grandma.
 
 (It doesn't have to be perfect. It just has to work well *enough.*)
 
-## Record
-71% - 5 wins / 2 losses\
-(as of 9/25/2022)
-
 ## Roadmap
 **Pre-alpha**
 - [x] Add hand worth recalculation with turn card
