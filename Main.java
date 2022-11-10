@@ -17,6 +17,14 @@ public class Main {
             }
         }
         Collections.sort(choices);
+        /*
+        System.out.println("==== DEBUG ====");
+        for(HandPick h : choices){
+            System.out.println(h.fancyString());
+            System.out.println();
+        }
+        System.out.println("==== DEBUG ====");
+        */
         return choices.get(0);
     }
 

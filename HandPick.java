@@ -76,13 +76,16 @@ public class HandPick implements Comparable<HandPick>{
         if(keptPair) points++;
 
         if(dealer){
-            if(tossedSum == 15) points += 5;
-            if(tossedFive) points += 2;
-            if(tossedPair) points += 5;
+            //All of the point values from here down to the "-= 2" below were adjusted on Nov 10th, 2022,
+            //in response to growing concern from the DailyCribbageHand community regarding how often
+            //CribEDGE had decided to put a Five in the opponent's crib.
+            if(tossedSum == 15) points += 3;
+            if(tossedFive) points += 5;
+            if(tossedPair) points += 2;
         } else {
-            if(tossedSum == 15) points -= 5;
-            if(tossedFive) points -= 2;
-            if(tossedPair) points -= 5;
+            if(tossedSum == 15) points -= 3;
+            if(tossedFive) points -= 5;
+            if(tossedPair) points -= 2;
             //Thanks to u/james-500 for suggesting this next line.
             //I hadn't thought of avoiding opponent-crib flushes.
             if(tossed.get(0).getSuit() != tossed.get(1).getSuit()) points++;
