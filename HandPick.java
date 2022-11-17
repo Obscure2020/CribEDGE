@@ -46,7 +46,7 @@ public class HandPick implements Comparable<HandPick>{
     private int calculateBonus(boolean dealer){
         int points = 0;
 
-        boolean keptFT = false;
+        boolean keptGoodPeg = false;
         boolean keptBIG = false;
         boolean keptJack = false;
         int tossedSum = 0;
@@ -56,7 +56,7 @@ public class HandPick implements Comparable<HandPick>{
         boolean tossedPair = false;
 
         for(PlayingCard k : kept){
-            if(k.getFace()==2 || k.getFace()==3) keptFT = true;
+            if(k.getFace()==2 || k.getFace()==3 || k.getFace()==0) keptGoodPeg = true;
             if(k.getFace()>=5 || k.getFace()<=8) keptBIG = true;
             if(k.getFace() == 10) keptJack = true;
             if(faces.contains(k.getFace())) keptPair = true;
@@ -70,15 +70,14 @@ public class HandPick implements Comparable<HandPick>{
             faces.add(k.getFace());
         }
 
-        if(keptFT) points += 2;
+        if(keptGoodPeg) points += 2;
         if(keptBIG) points++;
-        if(keptJack) points++;
         if(keptPair) points++;
 
         if(dealer){
-            //All of the point values from here down to the "-= 2" below were adjusted on Nov 10th, 2022,
-            //in response to growing concern from the DailyCribbageHand community regarding how often
-            //CribEDGE had decided to put a Five in the opponent's crib.
+            /*All of the point values from here down to the "-= 2" below were adjusted on Nov 10th, 2022,
+            in response to growing concern from the DailyCribbageHand community regarding how often
+            CribEDGE had decided to put a Five in the opponent's crib.*/
             if(tossedSum == 15) points += 3;
             if(tossedFive) points += 5;
             if(tossedPair) points += 2;
@@ -86,9 +85,13 @@ public class HandPick implements Comparable<HandPick>{
             if(tossedSum == 15) points -= 3;
             if(tossedFive) points -= 5;
             if(tossedPair) points -= 2;
-            //Thanks to u/james-500 for suggesting this next line.
-            //I hadn't thought of avoiding opponent-crib flushes.
+            /*Thanks to u/james-500 for suggesting this next line.
+            I hadn't thought of avoiding opponent-crib flushes.*/
             if(tossed.get(0).getSuit() != tossed.get(1).getSuit()) points++;
+            /*The knobs-detecting code was moved here, because I realized that if you're the dealer,
+            you'll get the knobs point (if one is available) regardless of whether the Jack's in
+            your hand or your crib.*/
+            if(keptJack) points++;
         }
 
         return points;
@@ -99,9 +102,13 @@ public class HandPick implements Comparable<HandPick>{
         Integer theirs = other.worth + other.bonusPoints;
         int result = theirs.compareTo(mine);
         if(result == 0){
-            mine = worth;
-            theirs = other.worth;
-            return theirs.compareTo(mine);
+            /* All else being equal, I'm getting a sense from the Daily Cribbage Hand community
+            that it's advantageous to keep lower-valued cards for the pegging section.*/
+            mine = 0;
+            for(PlayingCard k : kept) mine += k.getFace();
+            theirs = 0;
+            for(PlayingCard k : other.kept) theirs += k.getFace();
+            return mine.compareTo(theirs);
         }
         return result;
     }
