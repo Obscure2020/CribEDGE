@@ -2,6 +2,8 @@ import java.util.*;
 
 public class Main {
 
+    private static final boolean debugInfo = false;
+
     private static boolean yes_or_no(String userInput) throws IllegalArgumentException{
         char input = userInput.toLowerCase().charAt(0);
         if(input == 'y') return true;
@@ -17,14 +19,14 @@ public class Main {
             }
         }
         Collections.sort(choices);
-        /*
-        System.out.println("==== DEBUG ====");
-        for(HandPick h : choices){
-            System.out.println(h.fancyString());
-            System.out.println();
+        if(debugInfo){
+            System.out.println("==== DEBUG ====");
+            for(HandPick h : choices){
+                System.out.println(h.fancyString());
+                System.out.println();
+            }
+            System.out.println("==== DEBUG ====");
         }
-        System.out.println("==== DEBUG ====");
-        */
         return choices.get(0);
     }
 

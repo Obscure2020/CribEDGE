@@ -48,6 +48,7 @@ public class HandPick implements Comparable<HandPick>{
 
         boolean keptGoodPeg = false;
         boolean keptBIG = false;
+        boolean keptAce = false;
         boolean keptJack = false;
         int tossedSum = 0;
         boolean tossedFive = false;
@@ -56,8 +57,9 @@ public class HandPick implements Comparable<HandPick>{
         boolean tossedPair = false;
 
         for(PlayingCard k : kept){
-            if(k.getFace()==2 || k.getFace()==3 || k.getFace()==0) keptGoodPeg = true;
-            if(k.getFace()>=5 || k.getFace()<=8) keptBIG = true;
+            if(k.points()==3 || k.points()==4) keptGoodPeg = true;
+            if(k.points()==1) keptAce = true;
+            if(k.points()>=6 && k.points()<=9) keptBIG = true;
             if(k.getFace() == 10) keptJack = true;
             if(faces.contains(k.getFace())) keptPair = true;
             faces.add(k.getFace());
@@ -65,13 +67,14 @@ public class HandPick implements Comparable<HandPick>{
         faces.clear();
         for(PlayingCard k : tossed){
             tossedSum += k.points();
-            if(k.getFace() == 4) tossedFive = true;
+            if(k.points() == 5) tossedFive = true;
             if(faces.contains(k.getFace())) tossedPair = true;
             faces.add(k.getFace());
         }
 
         if(keptGoodPeg) points += 2;
         if(keptBIG) points++;
+        if(keptAce) points++;
         if(keptPair) points++;
 
         if(dealer){
@@ -105,9 +108,9 @@ public class HandPick implements Comparable<HandPick>{
             /* All else being equal, I'm getting a sense from the Daily Cribbage Hand community
             that it's advantageous to keep lower-valued cards for the pegging section.*/
             mine = 0;
-            for(PlayingCard k : kept) mine += k.getFace();
+            for(PlayingCard k : kept) mine += k.points();
             theirs = 0;
-            for(PlayingCard k : other.kept) theirs += k.getFace();
+            for(PlayingCard k : other.kept) theirs += k.points();
             return mine.compareTo(theirs);
         }
         return result;
