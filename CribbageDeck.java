@@ -232,7 +232,7 @@ public class CribbageDeck {
                         info_15_3.add(sb.toString());
                     }
                     //Run of 3
-                    if(!run4){
+                    if(!run4 && !run5){
                         faces.clear();
                         faces.add(composite.get(i).getFace());
                         faces.add(composite.get(j).getFace());
