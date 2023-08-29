@@ -105,13 +105,18 @@ public class HandPick implements Comparable<HandPick>{
         Integer theirs = other.worth + other.bonusPoints;
         int result = theirs.compareTo(mine);
         if(result == 0){
-            /* All else being equal, I'm getting a sense from the Daily Cribbage Hand community
-            that it's advantageous to keep lower-valued cards for the pegging section.*/
-            mine = 0;
-            for(PlayingCard k : kept) mine += k.points();
-            theirs = 0;
-            for(PlayingCard k : other.kept) theirs += k.points();
-            return mine.compareTo(theirs);
+            mine = worth;
+            theirs = other.worth;
+            result = theirs.compareTo(mine);
+            if(result == 0){
+                /* All else being equal, I'm getting a sense from the Daily Cribbage Hand community
+                that it's advantageous to keep lower-valued cards for the pegging section.*/
+                mine = 0;
+                for(PlayingCard k : kept) mine += k.points();
+                theirs = 0;
+                for(PlayingCard k : other.kept) theirs += k.points();
+                result = mine.compareTo(theirs);
+            }
         }
         return result;
     }
