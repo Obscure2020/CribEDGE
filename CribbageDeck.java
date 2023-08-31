@@ -75,7 +75,8 @@ public class CribbageDeck {
 
     public static int hand5worth(ArrayList<PlayingCard> cards, PlayingCard turnCard){
         int points = 0;
-        boolean runsDone = false;
+        boolean run5 = false;
+        boolean run4 = false;
         boolean flush5 = false;
 
         ArrayList<String> info_15_2 = new ArrayList<>();
@@ -122,7 +123,7 @@ public class CribbageDeck {
         for(PlayingCard c : composite) faces.add(c.getFace());
         if(faces.get(0)+1 == faces.get(1) && faces.get(1)+1 == faces.get(2) && faces.get(2)+1 == faces.get(3) && faces.get(3)+1 == faces.get(4)){
             points += 5;
-            runsDone = true;
+            run5 = true;
             StringBuilder sb = new StringBuilder("5 pts - Run of 5: ");
             for(int i=0; i<5; i++){
                 PlayingCard c = composite.get(i);
@@ -177,7 +178,7 @@ public class CribbageDeck {
                             info_15_4.add(sb.toString());
                         }
                         //Run of 4
-                        if(!runsDone){
+                        if(!run5){
                             faces.clear();
                             faces.add(composite.get(i).getFace());
                             faces.add(composite.get(j).getFace());
@@ -186,7 +187,7 @@ public class CribbageDeck {
                             Collections.sort(faces);
                             if(faces.get(0)+1 == faces.get(1) && faces.get(1)+1 == faces.get(2) && faces.get(2)+1 == faces.get(3)){
                                 points += 4;
-                                runsDone = true;
+                                run4 = true;
                                 StringBuilder sb = new StringBuilder("4 pts - Run of 4: ");
                                 sb.append(composite.get(i).getLongName());
                                 sb.append(", ");
@@ -232,7 +233,7 @@ public class CribbageDeck {
                         info_15_3.add(sb.toString());
                     }
                     //Run of 3
-                    if(!runsDone){
+                    if(!run5 && !run4){
                         faces.clear();
                         faces.add(composite.get(i).getFace());
                         faces.add(composite.get(j).getFace());

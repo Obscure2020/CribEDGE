@@ -27,7 +27,7 @@ public class Main {
         }
         Collections.sort(worthiest, Comparator.comparingInt(HandPick::getBonus).reversed());
         boolean victory = worthiest.get(0).getWorth() + myPoints > 120;
-        boolean worried = theirPoints >= 80;
+        boolean worried = (theirPoints >= 80) || (theirPoints > myPoints * 1.49);
         if(victory || worried){
             if(victory){
                 System.out.println("Victory lap activated. Maximizing hand worth.");
