@@ -28,11 +28,14 @@ public class Main {
         Collections.sort(worthiest, Comparator.comparingInt(HandPick::getBonus).reversed());
         boolean victory = worthiest.get(0).getWorth() + myPoints > 120;
         boolean worried = (theirPoints >= 80) || (theirPoints > myPoints * 1.49);
-        if(victory || worried){
+        boolean schmoovin = dealer && worthiest.get(0).getWorth() >= 10;
+        if(victory || worried || schmoovin){
             if(victory){
                 System.out.println("Victory lap activated. Maximizing hand worth.");
-            } else {
+            } else if (worried) {
                 System.out.println("Worried about opponent score. Prioritizing hand worth.");
+            } else {
+                System.out.println("We're schmoovin' this round.");
             }
             if(debugInfo){
                 System.out.println("==== DEBUG ====");
