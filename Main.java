@@ -18,42 +18,60 @@ public class Main {
                 choices.add(new HandPick(cards, i, j, dealer));
             }
         }
-        Collections.sort(choices, Comparator.comparingInt(HandPick::getWorth).reversed());
-        int maxWorth = choices.get(0).getWorth();
-        ArrayList<HandPick> worthiest = new ArrayList<>();
-        for(HandPick hp : choices){
-            if(hp.getWorth() < maxWorth) break;
-            worthiest.add(hp);
-        }
-        Collections.sort(worthiest, Comparator.comparingInt(HandPick::getBonus).reversed());
-        boolean victory = worthiest.get(0).getWorth() + myPoints > 120;
-        boolean worried = (theirPoints >= 80) || (theirPoints > myPoints * 1.49);
-        boolean schmoovin = dealer && worthiest.get(0).getWorth() >= 10;
-        if(victory || worried || schmoovin){
-            if(victory){
-                System.out.println("Victory lap activated. Maximizing hand worth.");
-            } else if (worried) {
-                System.out.println("Worried about opponent score. Prioritizing hand worth.");
-            } else {
-                System.out.println("We're schmoovin' this round.");
-            }
-            if(debugInfo){
-                System.out.println("==== DEBUG ====");
-                for(HandPick hp : worthiest){
-                    System.out.println(hp.fancyString());
-                    System.out.println();
-                }
-                System.out.println("==== DEBUG ====");
-            }
-            return worthiest.get(0);
-        }
         Collections.sort(choices);
-        if(debugInfo){
-            System.out.println("==== DEBUG ====");
-            for(HandPick hp : choices){
-                System.out.println(hp.fancyString());
-                System.out.println();
+        final int maxWorth = choices.stream().mapToInt(HandPick::getWorth).max().getAsInt();
+        final boolean victory = maxWorth + myPoints > 120;
+        final boolean worried = (theirPoints >= 80) || (theirPoints > myPoints * 1.49);
+        final boolean schmoovin = dealer && maxWorth >= 10;
+        if(maxWorth == choices.get(0).getWorth()){
+            //If the default logic picked a highest-worth hand already, do the following:
+            if(victory){
+                System.out.println("Default logic allows us to go out this round.");
+            } else if (worried) {
+                System.out.println("Worried about opponent score, but default logic sufficed.");
+            } else if (maxWorth >= 10){
+                System.out.println("Default logic picked quite a high-worth hand.");
             }
+        } else {
+            //If there is a hand available that is worth more than the default pick, do the following:
+            ArrayList<HandPick> worthiest = new ArrayList<>();
+            choices.stream().filter(hp -> hp.getWorth() == maxWorth).forEachOrdered(worthiest::add);
+            Collections.sort(worthiest, Comparator.comparingInt(HandPick::getBonus).reversed());
+            if(victory || worried || schmoovin){
+                if(victory){
+                    System.out.println("Victory lap activated. Maximizing hand worth.");
+                } else if (worried) {
+                    System.out.println("Worried about opponent score. Prioritizing hand worth.");
+                } else {
+                    System.out.println("We're schmoovin' this round. Default logic bypassed.");
+                }
+                if(debugInfo){
+                    StringBuilder sb = new StringBuilder();
+                    for(HandPick hp : worthiest){
+                        sb.append(hp.fancyString());
+                        sb.append("\n\n");
+                        choices.remove(hp);
+                    }
+                    sb.append("---------------\n\n");
+                    for(HandPick hp : choices){
+                        sb.append(hp.fancyString());
+                        sb.append("\n\n");
+                    }
+                    System.out.println("==== DEBUG ====");
+                    System.out.println(sb.toString().trim());
+                    System.out.println("==== DEBUG ====");
+                }
+                return worthiest.get(0);
+            }
+        }
+        if(debugInfo){
+            StringBuilder sb = new StringBuilder();
+            for(HandPick hp : choices){
+                sb.append(hp.fancyString());
+                sb.append("\n\n");
+            }
+            System.out.println("==== DEBUG ====");
+            System.out.println(sb.toString().trim());
             System.out.println("==== DEBUG ====");
         }
         return choices.get(0);
