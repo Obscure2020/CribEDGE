@@ -29,8 +29,6 @@ public class Main {
                 System.out.println("Default logic allows us to go out this round.");
             } else if (worried) {
                 System.out.println("Worried about opponent score, but default logic sufficed.");
-            } else if (maxWorth >= 10){
-                System.out.println("Default logic picked quite a high-worth hand.");
             }
         } else {
             //If there is a hand available that is worth more than the default pick, do the following:
