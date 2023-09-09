@@ -8,22 +8,22 @@ Challenge: build a Cribbage-playing bot good enough to beat my grandma.
 (It doesn't have to be perfect. It just has to work well *enough.*)
 
 ## Roadmap
-**Pre-alpha**
+#### Alpha
 - [x] Add hand worth recalculation with turn card
-- [ ] Add crib worth calculation (with turn card, of course)
-- [ ] Add opponent hand worth calculation (with turn card)
-- [ ] Add opponent crib worth calculation (with turn card)
 - [ ] Add pegging section
+- [ ] Add opponent hand worth calculation (with turn card)
+- [ ] Add crib worth calculation (with turn card, of course)
+- [ ] Add opponent crib worth calculation (with turn card)
 - [ ] Add scorekeeping, with auto-repeat until win or loss
 
-**Alpha**
+#### Beta
 - [ ] Design playing card images
 - [ ] Implement GUI card selection
 - [ ] Implement GUI worth reporting
 - [ ] Design pegboard and pegs images
 - [ ] Implement virtual-pegboard scorekeeping
 
-**Beta**
+#### Release
 
 At this stage, all that might remain would be gradual strategy improvement, spurred by observations during use and possibly community suggestions/contributions.
 
@@ -40,3 +40,8 @@ After thinking it through, I realized that any hands worth 4 wouldn't have even 
 Played against my younger sister Mary for the second time. She's been learning from our dad how to play. She faced off against the bot once before, and lost. This time she got two great hands and one **_fantastic_** crib, and beat the bot.
 
 It was her crib, and the bot threw away a 10 and a 4. She threw away a 10 and another 10. The turn card was an Ace. Thats 12 points in a single crib. She got more than enough points from that to go out.
+
+**Update 9/9/2023**\
+After quite a long time occupied by other activities, including school, my first Computer Science-related internship, and several other hobby projects (some of which are *also* still works in progress at this date), I have returned to testing and tinkering with CribEDGE. My thanks go out to the kind folks at [Daily Cribbage Hand](https://www.dailycribbagehand.org/) for providing me with test scenarios and feeback. I have been able to use their advice to inform several small improvements to the hand-selection algorithm.
+
+I have also been pondering methods of implementing a decent pegging algorithm, and I now have some workable ideas forming in my head. I may also be able to enlist my dad in the effort of wrtiting this one out. No idea when we'll actually get around to this, but it'll happen eventually.
