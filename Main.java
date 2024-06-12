@@ -75,7 +75,16 @@ public class Main {
         return choices.get(0);
     }
 
+    private static Pegging prefRow(String newOrder){
+        return new PegPreference(newOrder);
+    }
+
     public static void main(String[] args) throws Exception{
+        Pegging[] peggingRows = new Pegging[]{
+            prefRow("4398762a0jqk5"),
+            prefRow("a0jqk87653294"),
+        };
+
         CribbageDeck deck = new CribbageDeck();
         Scanner scan = new Scanner(System.in);
         ArrayList<PlayingCard> hand = new ArrayList<>(6);

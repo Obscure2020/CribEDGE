@@ -1,7 +1,7 @@
 # CribEDGE - Pre-alpha
 
 ## Explanation
-My dad's side of the family holds an annual summer Family Reunion vacation for a whole week. This year, while on vacation, my dad taught me how to play Cribbage. He then mentioned that my grandma (his mother) was the best player he knew.
+My dad's side of the family holds an annual summer Family Reunion vacation for a whole week. In 2022, while on vacation, my dad taught me how to play Cribbage. He then mentioned that my grandma (his mother) was the best player he knew.
 
 Challenge: build a Cribbage-playing bot good enough to beat my grandma.
 

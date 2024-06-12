@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class PegPreference implements Pegging {
 
@@ -13,6 +14,8 @@ public class PegPreference implements Pegging {
             indices[i] = lookup;
         }
         ordering = indices;
+        //TODO: Remove the following when pegging is working.
+        System.out.println("DEBUG: new PegPreference with ordering " + Arrays.toString(ordering));
     }
 
     public PlayingCard select(ArrayList<PlayingCard> hand, ArrayList<PlayingCard> history){
