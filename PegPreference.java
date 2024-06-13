@@ -22,7 +22,10 @@ public class PegPreference implements Pegging {
         PlayingCard found = null;
         for(int face : ordering){
             for(PlayingCard card : hand){
-                if(card.getFace() == face) found = card;
+                if(card.getFace() == face){
+                    found = card;
+                    break;
+                }
             }
             if(found != null) break;
         }

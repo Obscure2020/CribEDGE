@@ -22,6 +22,32 @@ public class PegBonus implements Pegging {
     }
 
     public PlayingCard select(ArrayList<PlayingCard> hand, ArrayList<PlayingCard> history){
-        //TODO: This function.
+        int[] results = new int[bonusOrder.length];
+        for(int i=0; i<results.length; i++){
+            PlayingCard found = null;
+            for(PlayingCard card : hand){
+                if(card.getFace() == bonusOrder[i]){
+                    found = card;
+                    break;
+                }
+            }
+            if(found == null){
+                results[i] = -1;
+            } else {
+                int points = 0;
+                ArrayList<PlayingCard> hypothetical = new ArrayList<>();
+                for(PlayingCard card : history) hypothetical.add(card);
+                hypothetical.add(found);
+                int endSum = 0;
+                for(PlayingCard card : hypothetical) endSum += card.points();
+                if(endSum == 15) points += 2;
+                if(endSum == 21) points -= 2;
+                //TODO: Add pair checking.
+                //TODO: Add straight checking.
+                results[i] = points;
+            }
+        }
+        //TODO: Add results scanning.
+        //TODO: Add fallback.
     }
 }
