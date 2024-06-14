@@ -40,9 +40,21 @@ public class PegBonus implements Pegging {
                 hypothetical.add(found);
                 int endSum = 0;
                 for(PlayingCard card : hypothetical) endSum += card.points();
+                int cardQuant = hypothetical.size();
                 if(endSum == 15) points += 2;
                 if(endSum == 21) points -= 2;
-                //TODO: Add pair checking.
+                if(endSum == 31) points += 2;
+                //Pair Checking
+                if(cardQuant>=2 && found.getFace()==hypothetical.get(cardQuant-2).getFace()){
+                    int pairPoints = 2;
+                    if(cardQuant>=3 && found.getFace()==hypothetical.get(cardQuant-3).getFace()){
+                        pairPoints =  6;
+                        if(cardQuant>=4 && found.getFace()==hypothetical.get(cardQuant-4).getFace()){
+                            pairPoints = 12;
+                        }
+                    }
+                    points += pairPoints;
+                }
                 //TODO: Add straight checking.
                 results[i] = points;
             }
