@@ -84,7 +84,28 @@ public class PegBonus implements Pegging {
                 results[i] = points;
             }
         }
-        //TODO: Add results scanning.
-        //TODO: Add fallback.
+        int maxBonus = Integer.MIN_VALUE;
+        for(int k : results){
+            if(k > maxBonus) maxBonus = k;
+        }
+        if(maxBonus > 0){
+            int index = -1;
+            for(int i=0; i<results.length; i++){
+                if(results[i] == maxBonus){
+                    index = i;
+                    break;
+                }
+            }
+            PlayingCard selection = null;
+            for(PlayingCard card : hand){
+                if(card.getFace() == index){
+                    selection = card;
+                    break;
+                }
+            }
+            return selection;
+        } else {
+            return fallback.select(hand, history);
+        }
     }
 }
