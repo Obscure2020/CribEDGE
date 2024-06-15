@@ -1,5 +1,4 @@
-import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.*;
 
 public class PegBonus implements Pegging {
 
@@ -40,7 +39,7 @@ public class PegBonus implements Pegging {
                 hypothetical.add(found);
                 int endSum = 0;
                 for(PlayingCard card : hypothetical) endSum += card.points();
-                int cardQuant = hypothetical.size();
+                final int cardQuant = hypothetical.size();
                 if(endSum == 15) points += 2;
                 if(endSum == 21) points -= 2;
                 if(endSum == 31) points += 2;
@@ -55,7 +54,33 @@ public class PegBonus implements Pegging {
                     }
                     points += pairPoints;
                 }
-                //TODO: Add straight checking.
+                //Straight Checking
+                if(cardQuant >= 3){
+                    int straightPoints = 0;
+                    ArrayList<Integer> lastFaces = new ArrayList<>();
+                    lastFaces.add(hypothetical.get(cardQuant-1).getFace());
+                    lastFaces.add(hypothetical.get(cardQuant-2).getFace());
+                    for(int check=3; check<=cardQuant; check++){
+                        lastFaces.add(hypothetical.get(cardQuant-check).getFace());
+                        Collections.sort(lastFaces);
+                        boolean correct = true;
+                        int expected = lastFaces.get(0);
+                        for(int f : lastFaces){
+                            if(f == expected){
+                                expected = f + 1;
+                            } else {
+                                correct = false;
+                                break;
+                            }
+                        }
+                        if(correct){
+                            straightPoints = check;
+                        } else {
+                            break;
+                        }
+                    }
+                    points += straightPoints;
+                }
                 results[i] = points;
             }
         }
