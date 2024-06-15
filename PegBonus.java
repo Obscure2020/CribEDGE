@@ -15,7 +15,7 @@ public class PegBonus implements Pegging {
         }
         bonusOrder = indices;
         //TODO: Remove the following two lines when pegging is working.
-        System.out.println("DEBUG: new PegPreference with ordering " + Arrays.toString(bonusOrder));
+        System.out.println("DEBUG: new PegBonus with ordering " + Arrays.toString(bonusOrder));
         System.out.print("        ");
         fallback = new PegPreference(fallbackOrder);
     }

@@ -79,10 +79,15 @@ public class Main {
         return new PegPreference(newOrder);
     }
 
+    private static Pegging bonusRow(String bonusOrder, String fallbackOrder){
+        return new PegBonus(bonusOrder, fallbackOrder);
+    }
+
     public static void main(String[] args) throws Exception{
         Pegging[] peggingRows = new Pegging[]{
             prefRow("4398762a0jqk5"),
             prefRow("a0jqk87653294"),
+            bonusRow("2a", "2a0jqk9765483"),
         };
 
         CribbageDeck deck = new CribbageDeck();
