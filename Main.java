@@ -88,6 +88,8 @@ public class Main {
             prefRow("4398762a0jqk5"),
             prefRow("a0jqk87653294"),
             bonusRow("2a", "2a0jqk9765483"),
+            bonusRow("3a", "a0jqk98654372"),
+            //TODO: Fill in the rest of these from the notebook pages I compiled with my dad.
         };
 
         CribbageDeck deck = new CribbageDeck();
