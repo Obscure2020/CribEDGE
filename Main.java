@@ -83,13 +83,43 @@ public class Main {
         return new PegBonus(bonusOrder, fallbackOrder);
     }
 
+    private static Pegging copyBonusRow(String newOrder){
+        return new PegBonus(newOrder, newOrder);
+    }
+
     public static void main(String[] args) throws Exception{
         Pegging[] peggingRows = new Pegging[]{
             prefRow("4398762a0jqk5"),
             prefRow("a0jqk87653294"),
             bonusRow("2a", "2a0jqk9765483"),
             bonusRow("3a", "a0jqk98654372"),
-            //TODO: Fill in the rest of these from the notebook pages I compiled with my dad.
+            bonusRow("432", "0jqk98754326a"),
+            bonusRow("0jqk5432a", "0jqk9876432a5"),
+            bonusRow("965432a", "90jqk876532a4"),
+            bonusRow("8765432a", "80jqk976542a3"),
+            bonusRow("8765432a", "70jqk986543a2"),
+            bonusRow("98765432", "60jqk9875432a"),
+            copyBonusRow("50jqk9876432a"),
+            copyBonusRow("49876532a0jqk"),
+            copyBonusRow("3876540jqk2a9"),
+            copyBonusRow("2765430jqk9a8"),
+            copyBonusRow("a654320jqk987"),
+            copyBonusRow("5432a0jqk9876"),
+            copyBonusRow("432a0jqk98765"),
+            copyBonusRow("32a0jqk987654"),
+            copyBonusRow("2a0jqk9876543"),
+            copyBonusRow("a0jqk98765432"),
+            copyBonusRow("0jqk98765432a"),
+            copyBonusRow("0jqk98765432a"),
+            copyBonusRow("98765432a"),
+            copyBonusRow("8765432a"),
+            copyBonusRow("765432a"),
+            copyBonusRow("65432a"),
+            copyBonusRow("5432a"),
+            copyBonusRow("432a"),
+            copyBonusRow("32a"),
+            copyBonusRow("2a"),
+            prefRow("a"),
         };
 
         CribbageDeck deck = new CribbageDeck();
