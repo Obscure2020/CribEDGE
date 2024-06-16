@@ -45,3 +45,6 @@ It was her crib, and the bot threw away a 10 and a 4. She threw away a 10 and an
 After quite a long time occupied by other activities, including school, my first Computer Science-related internship, and several other hobby projects (some of which are *also* still works in progress at this date), I have returned to testing and tinkering with CribEDGE. My thanks go out to the kind folks at [Daily Cribbage Hand](https://www.dailycribbagehand.org/) for providing me with test scenarios and feeback. I have been able to use their advice to inform several small improvements to the hand-selection algorithm.
 
 I have also been pondering methods of implementing a decent pegging algorithm, and I now have some workable ideas forming in my head. I may also be able to enlist my dad in the effort of wrtiting this one out. No idea when we'll actually get around to this, but it'll happen eventually.
+
+**Update 6/16/2024**\
+Took a break from working on this for quite a while so I could focus on completing my Bachelor's degree. Just recently returned from our 2024 family reunion. Spent some time discussing strategy with my dad and worked out the contents of [these notebook pages](Posterity/Notes%20from%20June%202024%20Vacation.pdf). Implementing those ideas is now in progress.
